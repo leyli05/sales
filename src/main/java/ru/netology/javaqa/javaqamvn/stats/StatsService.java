@@ -1,9 +1,8 @@
 package ru.netology.javaqa.javaqamvn.stats;
 
-import java.util.Arrays;
 
 public class StatsService {
-    public int getMinSale(int[] sales) {
+    public int getMinSale(long[] sales) {
         int minMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
@@ -15,7 +14,7 @@ public class StatsService {
         return minMonth + 1;
     }
 
-    public int getMaxSale(int[] sales) {
+    public int getMaxSale(long[] sales) {
         int maxMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
@@ -27,35 +26,43 @@ public class StatsService {
         return maxMonth + 1;
     }
 
-    public int sum(int[] sales) {
+    public int sum(long[] sales) {
+        int sumMonth = 0;
+        for (long sale : sales) {
+            sumMonth += (int) sale;
+        }
 
-        return Arrays.stream(sales).sum();
+        return sumMonth;
 
     }
 
-    public int average(int[] sales) {
+    public int averageSales(long[] sales) {
+        int averageSum = 0;
+        int sumMonth = 0;
+        sumMonth = sum(sales);
+        averageSum = sumMonth / sales.length;
 
-        return Arrays.stream(sales).sum() / 12;
+
+        return averageSum;
     }
 
-    public int LowerAverage(int[] sales) {
+    public int lowerAverage(long[] sales) {
         int monthsAmount = 0;
-        int x = average(sales);
-        for (int monthSale : sales) {
-            if (monthSale < x) {
+        int averageSales = averageSales(sales);
+        for (long monthSale : sales) {
+            if (monthSale <= averageSales) {
                 monthsAmount += 1;
             }
         }
         return monthsAmount;
     }
 
-    public int HigherAverage(int[] sales) {
+    public int higherAverage(long[] sales) {
         int monthsAmount = 0;
-        int sum = 0;
-        int x = average(sales);
+        int averageSales = averageSales(sales);
 
-        for (int monthSale : sales) {
-            if (monthSale > x) {
+        for (long monthSale : sales) {
+            if (monthSale >= averageSales(sales)) {
                 monthsAmount += 1;
             }
         }

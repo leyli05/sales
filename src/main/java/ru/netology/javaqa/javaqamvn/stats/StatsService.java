@@ -37,13 +37,9 @@ public class StatsService {
     }
 
     public int averageSales(long[] sales) {
-        int averageSum = 0;
-        int sumMonth = 0;
-        sumMonth = sum(sales);
-        averageSum = sumMonth / sales.length;
+        int sumMonth = sum(sales);
 
-
-        return averageSum;
+        return sumMonth / sales.length;
     }
 
     public int lowerAverage(long[] sales) {
@@ -62,7 +58,7 @@ public class StatsService {
         int averageSales = averageSales(sales);
 
         for (long monthSale : sales) {
-            if (monthSale >= averageSales(sales)) {
+            if (monthSale >= averageSales) {
                 monthsAmount += 1;
             }
         }
